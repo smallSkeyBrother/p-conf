@@ -19,16 +19,33 @@ public class Result<T> extends BaseDomain {
 	private static final long serialVersionUID = -2323428265630782361L;
 
 	private static final String SUCCESS_RESULT = "200";
-	
+
+	/**
+	 * 状态码
+	 */
 	private String code;
-	
+
+	/**
+	 * 信息
+	 */
 	private String msg;
-	
+
+	/**
+	 * 数据
+	 */
 	private T data;
-	
+
+	/**
+	 * 备注
+	 */
 	private String remark;
 
-	private Result(String code, String msg, T data, String remark) {
+	/**
+	 * 分页信息
+	 */
+	private PagiNation pagiNation;
+
+	private Result(String code, String msg, T data, String remark, PagiNation pagiNation) {
 		super();
 		this.code = code;
 		this.msg = msg;
@@ -36,6 +53,7 @@ public class Result<T> extends BaseDomain {
 		this.remark = remark;
 	}
 
-	public Result() {}
+	private Result() {
+	}
 
 }
