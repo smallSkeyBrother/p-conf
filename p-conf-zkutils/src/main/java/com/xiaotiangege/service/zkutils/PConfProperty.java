@@ -20,14 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class PConfProperty extends PropertyPlaceholderConfigurer {
-	private static final String DEFAULT_NAMESPACE = "p-conf";
-	private static final String PARAM_ZKSERVERS = "pconf.zkServers";
-	private static final String PARAM_ENVIORMENT = "pconf.enviroment";
-	private static final String PARAM_COMPANY = "pconf.company";
-	private static final String PARAM_PROJECT = "pconf.project";
-	private static final String PARAM_SERVICE = "pconf.service";
 	private String base;
-
 	private ZKClient zkClient;
 	private static Properties properties;
 
@@ -70,14 +63,15 @@ public class PConfProperty extends PropertyPlaceholderConfigurer {
 		super.processProperties(beanFactoryToProcess, props);
 	}
 
-	public void loadProperties() {
+	public void loadProperties() throws Exception {
 		this.loadZkConf();
 	}
 
 	/**
 	 * 从zk上加载数据
+	 * @throws Exception 
 	 */
-	private void loadZkConf() {
+	private void loadZkConf() throws Exception {
 		try {
 			if (this.zkClient.NotExist(this.base)) {
 				throw new Exception("zk node is not exist , path = " + this.base);
@@ -95,6 +89,7 @@ public class PConfProperty extends PropertyPlaceholderConfigurer {
 				properties.setProperty("zookeeper.addr", System.getProperty("xconf.zkServers"));
 			}
 		} catch (Exception e) {
+			throw new Exception("");
 		}
 	}
 }
