@@ -9,6 +9,7 @@
 	<modules>
 		<module>p-conf-api</module>
 		<module>p-conf-server</module>
+		<module>p-conf-zkutils</module>
 	</modules>
 
 	<parent>

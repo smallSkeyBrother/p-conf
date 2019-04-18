@@ -20,4 +20,11 @@ public class ZKTest {
 		List<String> list = p.children("/develop/kuaixin/kx-iaas/kx-repayment");
 		System.out.println(list);
 	}
+	
+	@Test
+	public void testZK1() throws Exception {
+		ZKClient p = new ZKClient("10.40.10.205:2181,10.40.10.206:2181,10.40.10.207:2181", "x-conf");
+		String data = p.getData("/develop/kuaixin/kx-iaas/kx-repayment/spring.redis.cluster.nodes");
+		System.out.println(data);
+	}
 }

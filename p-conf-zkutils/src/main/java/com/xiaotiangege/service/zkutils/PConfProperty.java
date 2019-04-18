@@ -8,7 +8,7 @@ import java.util.Properties;
  * @Description TODO
  * @createDate 2019年4月18日 上午9:55:06
  */
-public class PConfListenr {
+public class PConfProperty {
 
 	private static Properties properties;
 

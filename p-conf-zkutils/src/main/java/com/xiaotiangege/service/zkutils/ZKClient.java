@@ -115,4 +115,25 @@ public class ZKClient {
 		return (List<String>) this.client.getChildren().forPath(path);
 	}
 
+	/**
+	 * 获取第一个孩子节点
+	 * 
+	 * @param path
+	 * @return
+	 * @throws Exception
+	 */
+	public String getFirstChild(String path) throws Exception {
+		return this.children(path).get(0);
+	}
+
+	/**
+	 * 获取节点值
+	 * 
+	 * @param path
+	 * @return
+	 * @throws Exception
+	 */
+	public String getData(String path) throws Exception {
+		return new String(this.client.getData().forPath(path));
+	}
 }
