@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties
-public class PagiNation extends BaseDomain {
+public class PagiNation<T> extends BaseDomain {
 
 	private static final long serialVersionUID = 2466518513756253130L;
 
@@ -37,19 +37,30 @@ public class PagiNation extends BaseDomain {
 	 * 总页数
 	 */
 	private int pages;
+	
+	/**
+	 * 查询数据
+	 */
+	private T data;
 
 	public PagiNation() {
 	}
 
+	@SuppressWarnings("unchecked")
 	public static PagiNation create(int pageNo, int pageSize, int total, int pages) {
-		return new PagiNation(pageNo, pageSize, total, pages);
+		return new PagiNation(pageNo, pageSize, total, pages, null);
+	}
+	
+	public static <T> PagiNation<T> create(int pageNo, int pageSize, int total, int pages, T data) {
+		return new PagiNation<T>(pageNo, pageSize, total, pages, data);
 	}
 
-	private PagiNation(int pageNo, int pageSize, int total, int pages) {
+	private PagiNation(int pageNo, int pageSize, int total, int pages, T data) {
 		super();
 		this.pageNo = pageNo;
 		this.pageSize = pageSize;
 		this.total = total;
 		this.pages = pages;
+		this.data = data;
 	}
 }

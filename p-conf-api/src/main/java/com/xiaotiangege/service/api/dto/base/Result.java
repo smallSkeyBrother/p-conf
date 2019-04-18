@@ -28,5 +28,14 @@ public class Result<T> extends BaseDomain {
 	
 	private String remark;
 
-	
+	private Result(String code, String msg, T data, String remark) {
+		super();
+		this.code = code;
+		this.msg = msg;
+		this.data = data;
+		this.remark = remark;
+	}
+
+	public Result() {}
+
 }
