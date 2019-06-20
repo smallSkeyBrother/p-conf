@@ -1,11 +1,13 @@
 package com.xiaotiangege.service.zkutils;
 
+import java.util.logging.Logger;
+
+import org.apache.commons.logging.LogFactory;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.ChildData;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
-
 /**
  * @author 小天哥哥
  * @mailto 361807535@qq.com
@@ -13,6 +15,8 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
  * @createDate 2019年6月6日 上午11:23:11
  */
 public class PConfNodeListener implements PathChildrenCacheListener, PConfChangeWatcher {
+	private static Logger log = (Logger) LogFactory.getLog(PConfNodeListener.class);
+
 	public PConfNodeListener() {
 	}
 
@@ -30,22 +34,17 @@ public class PConfNodeListener implements PathChildrenCacheListener, PConfChange
 		String value = new String(data.getData());
 		String path = data.getPath();
 		String key = path.substring(path.lastIndexOf("/") + 1, path.length());
+		log.info(String.format("节点变更=event:%s, key:%s, value:%s", type, key, path));
 		switch (type) {
-		case CHILD_ADDED: {
+		case CHILD_ADDED:
 			this.add(key, value);
 			break;
-		}
-
-		case CHILD_UPDATED: {
+		case CHILD_UPDATED:
 			this.update(key, value);
 			break;
-		}
-
-		case CHILD_REMOVED: {
+		case CHILD_REMOVED:
 			this.delete(key);
 			break;
-		}
-
 		default:
 			break;
 		}
