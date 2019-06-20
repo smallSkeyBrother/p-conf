@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  * @createDate 2019年4月15日 下午2:49:39 
  */
 @Slf4j
-@CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.HEAD, RequestMethod.OPTIONS}, exposedHeaders = {"xxxx"})
+@CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.HEAD})
 public class TransferAuthInterceptor extends HandlerInterceptorAdapter implements Ordered{
 
 	@Override
