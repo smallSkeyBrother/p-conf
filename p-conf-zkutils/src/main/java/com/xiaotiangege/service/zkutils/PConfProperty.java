@@ -69,7 +69,8 @@ public class PConfProperty extends PropertyPlaceholderConfigurer {
 
 	/**
 	 * 从zk上加载数据
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	private void loadZkConf() throws Exception {
 		try {
@@ -87,9 +88,11 @@ public class PConfProperty extends PropertyPlaceholderConfigurer {
 				}
 
 				properties.setProperty("zookeeper.addr", System.getProperty("xconf.zkServers"));
+				PConfNodeListener plisterner = new PConfNodeListener();
+				plisterner.watcherNode(zkClient.getClient(), base);
 			}
 		} catch (Exception e) {
-			throw new Exception("");
+			throw new Exception("load zkConf exception");
 		}
 	}
 }
